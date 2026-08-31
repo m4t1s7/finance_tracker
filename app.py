@@ -1,10 +1,8 @@
-from urllib import response
-
 import streamlit as st
 from datetime import datetime
 import requests
 
-mi_URL = "unaURLdeejemplo.com"
+mi_URL = st.secrets.get("N8N_WEBHOOK_URL", "")
 
 st.set_page_config(
     page_title="Tracker Financiero",
@@ -157,7 +155,9 @@ with st.form("registro_formulario", clear_on_submit=False):
     enviado = st.form_submit_button("🚀 Registrar Transacción")
 
 if enviado:
-    if fecha_seleccionada and descripcion_texto and categoria_seleccionada and tipo_seleccionado and monto_valor:
+    if not mi_URL:
+        st.toast("⚠️ Webhook no configurado. Añade tu URL en .streamlit/secrets.toml", icon="⚠️")
+    elif fecha_seleccionada and descripcion_texto and categoria_seleccionada and tipo_seleccionado and monto_valor:
         datos_json = {
             "Fecha": fecha_seleccionada.strftime("%m/%d/%Y"),
             "Descripcion": descripcion_texto.strip(),

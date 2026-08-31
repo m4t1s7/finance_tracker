@@ -1,0 +1,22 @@
+# Secretos y credenciales privadas de Streamlit (¡NUNCA subir a GitHub!)
+.streamlit/secrets.toml
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Variables de entorno
+.env
+
+# Archivos de sistema operativo / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
