@@ -156,7 +156,7 @@ with st.form("registro_formulario", clear_on_submit=False):
 
 if enviado:
     if not mi_URL:
-        st.toast("⚠️ Webhook no configurado. Añade tu URL en .streamlit/secrets.toml", icon="⚠️")
+        st.toast("⚠️ Webhook no configurado", icon="⚠️")
     elif fecha_seleccionada and descripcion_texto and categoria_seleccionada and tipo_seleccionado and monto_valor:
         datos_json = {
             "Fecha": fecha_seleccionada.strftime("%m/%d/%Y"),
