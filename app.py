@@ -98,7 +98,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-with st.form("registro_formulario", clear_on_submit=False):
+with st.form("registro_formulario", clear_on_submit=True):
     st.markdown("#### 📝 Datos de la Transacción")
 
     col1, col2 = st.columns(2)
@@ -166,13 +166,15 @@ if enviado:
             "Monto": int(monto_valor)
         }
         try:
-            respuesta = requests.post(mi_URL, json=datos_json, timeout=10)
+            with st.spinner("⏳ Enviando transacción a n8n..."):
+                respuesta = requests.post(mi_URL, json=datos_json, timeout=10)
+                
             if respuesta.status_code == 200:
                 st.toast("¡Registro enviado con éxito a Excel!", icon="✅")
             else:
-                st.toast(f"**Error**, tu registro no se ha podido guardar", icon="❌")
+                st.toast(f"❌ Error ({respuesta.status_code}): tu registro no se ha podido guardar", icon="❌")
         except requests.exceptions.RequestException as e:
-            st.toast("Error al enviar los datos. Por favor, inténtalo de nuevo.", icon="❌")
+            st.toast("❌ Error de conexión al enviar los datos. Inténtalo de nuevo.", icon="❌")
     else:
-        st.toast("Por favor, completa todos los campos antes de enviar.", icon="⚠️")
+        st.toast("⚠️ Por favor, completa todos los campos (la descripción y monto no pueden estar vacíos).", icon="⚠️")
 
