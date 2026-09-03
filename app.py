@@ -133,7 +133,8 @@ with st.form("registro_formulario", clear_on_submit=True):
             "Transporte",
             "Comida",
             "Suscripciones",
-            "Inversiones"
+            "Inversiones",
+            "Varios"
         ]
         categoria_seleccionada = st.selectbox(
             label="🏷️ Categoría",
