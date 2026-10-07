@@ -178,7 +178,7 @@ with tab2:
                 
                 try:
                             with st.spinner("⏳ Enviando transacción a n8n..."):
-                                respuesta = requests.post(MI_URL, json=datos_json, timeout=10)
+                                respuesta = requests.post(MI_URL, files=archivos)
                                 
                             if respuesta.status_code == 200:
                                 st.toast("¡Registro enviado con éxito a Excel!", icon="✅")
