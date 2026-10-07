@@ -177,15 +177,17 @@ with tab2:
                 archivos = {"data": ("foto.jpg", bytes_imagen, "image/jpeg")}
                 
                 try:
-                    with st.spinner("Enviando foto..."):
-                        respuesta = requests.post(MI_URL, files=archivos)
-                    
-                    if respuesta.status_code == 200:
-                        st.success("¡Foto enviada correctamente!")
-                    else:
-                        st.error(f"Error en el servidor: Código {respuesta.status_code}")
-                except Exception as e:
-                    st.error(f"No se pudo conectar con el webhook: {e}")
+                            with st.spinner("⏳ Enviando transacción a n8n..."):
+                                respuesta = requests.post(MI_URL, json=datos_json, timeout=10)
+                                
+                            if respuesta.status_code == 200:
+                                st.toast("¡Registro enviado con éxito a Excel!", icon="✅")
+                            else:
+                                st.toast(f"❌ Error ({respuesta.status_code}): tu registro no se ha podido guardar", icon="❌")
+                except requests.exceptions.RequestException as e:
+                            st.toast("❌ Error de conexión al enviar los datos. Inténtalo de nuevo.", icon="❌")
+            else:
+                st.toast("⚠️ Por favor, completa todos los campos (la descripción y monto no pueden estar vacíos).", icon="⚠️")
 
     
 if enviado:
