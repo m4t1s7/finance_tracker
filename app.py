@@ -186,8 +186,6 @@ with tab2:
                                 st.toast(f"❌ Error ({respuesta.status_code}): tu registro no se ha podido guardar", icon="❌")
                 except requests.exceptions.RequestException as e:
                             st.toast("❌ Error de conexión al enviar los datos. Inténtalo de nuevo.", icon="❌")
-            else:
-                st.toast("⚠️ Por favor, completa todos los campos (la descripción y monto no pueden estar vacíos).", icon="⚠️")
 
     
 if enviado:
