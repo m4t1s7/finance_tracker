@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 
 MI_URL = st.secrets.get("N8N_WEBHOOK_URL", "")
-FOTO_URL= "https://mael-n8n.duckdns.org/webhook-test/af318a8b-499a-433f-a824-88159ae47712"
+
 tab1, tab2 = st.tabs(["📄 Registro de Movimientos", "📸 Bill Photo Reader"])
 
 st.set_page_config(
